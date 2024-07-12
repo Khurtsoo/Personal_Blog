@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header id="header">
+    Blog Add/Edit
+</header>
+
+<section>
+    <form method="POST" enctype=multipart/form-data style="text-align: center; display: flex; flex-direction: column;" class="form-register">
+        <div class="row gtr-uniform">
+            {{form.hidden_tag()}}
+
+            <div class="col-12">
+                {{form.name.label}}
+                {{form.name(class="form-content", placeholer="Blog Name")}}
+            </div>
+            <div class="col-12">
+                {{form.file.label}}
+                {{form.file(class="form-content", placeholer="Blog Image")}}
+            </div>
+            <div class="col-12">
+                {{form.description.label}}
+                {{form.description(class="form-content", placeholer="Blog Price")}}
+            </div>
+            
+            <div class="col-12">
+             {{form.submit}}
+            </div>
+        </div>
+    </form>
+</section>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html"%}
+
+{% block content%}
+
+<!-- About Us -->
+<section id="banner">
+  <div class="content">
+    <header>
+      <h1>Hi, I’m Sandro, this is my <br />
+      Personal Blog</h1>
+    </header>
+   
+  </div>
+  <span class="image object">
+    <img src="{{ url_for('static', filename='Blog.jpg') }}" alt="" />
+  </span>
+</section>
+
+<!-- Blogs -->
+<section>
+  <header class="major">
+    <h2>Blogs</h2>
+  </header>
+  <div class="posts">
+    {% for Blog in    data: %}
+      {% set img = Blog.file %}
+    <article class="box">
+      <a href="/blog/{{Blog.id}}" class="image"><img src="{{ url_for('static', filename=img) }}" alt="" /></a>
+      <h3>{{ Blog.name }}</h3>
+      <p>{{ Blog.description | truncate(120) }}</p>
+      <ul class="actions">
+        <li>
+          <a href="/blog/{{Blog.id}}" class="button"> Read More </a>
+        </li>
+      </ul>
+      {% if current_user.role == "admin" %}
+      <div class="align-right">
+        <a href="/editBlog/{{Blog.id}}" class="button"><i class="fa-solid fa-2x fa-pen-to-square"></i></a>
+        <a href="/deleteBlog/{{Blog.id}}" class="button"><i class="fa-solid fa-2x fa-trash-can"></i></a>
+      </div>
+      {% endif %}
+
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+
+
+{% endblock %}
